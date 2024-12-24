@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>MusicChart</title>
+{% endblock %}
+
+
+
+{% block body %}
+<div class="container">
+    <h1 class="header title">MusicChart</h1>
+    <p class="description">Search for the top 50 songs of any year!</p>
+    <div class="content">
+        <form action="/" method="POST">
+            <input type="text" name="query" class="search_box" placeholder="Enter any year..." />
+            <input type="submit" value="Search" class="search_btn" />
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
