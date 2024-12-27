@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Top Trackify</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="content">
+
+        {% if type == 'artists' and time_period == 'long_term' %}
+        <h1 class="header">Top Artists from the last year</h1>
+
+        {% elif type == 'artists' and time_period == 'medium_term' %}
+        <h1 class="header">Top Artists from the last 6 months</h1>
+
+        {% elif type == 'artists' and time_period == 'short_term' %}
+        <h1 class="header">Top Artists from the last month</h1>
+
+        {% elif type == 'tracks' and time_period == 'long_term' %}
+        <h1 class="header">Top Tracks from the last year</h1>
+
+        {% elif type == 'tracks' and time_period == 'medium_term' %}
+        <h1 class="header">Top Tracks from the last 6 months</h1>
+
+        {% else %}
+        <h1 class="header">Top Tracks from the last month</h1>
+        {% endif %}
+
+        <table class="table data_table">
+            {% if type == 'artists' %}
+            {% for item in top_items %}
+            <tr>
+                <td>{{loop.index0 + 1}}.</td>
+                <td><div class="img_container"><img src="{{item.images[0].url}}"" alt="{{item.name}}"></td></div>
+                <td class="item_name">{{item.name}}</td>
+            </tr>
+            {% endfor %}
+
+
+            {% else %}
+            {% for item in top_items %}
+            <tr>
+                <td>{{loop.index0 + 1}}.</td>
+                <td><div class="img_container"><img src="{{item.album.images[0].url}}" alt="{{item.name}}"></td></div>
+                <td class="item_name">{{item.name}}</td>
+            </tr>
+            {% endfor %}
+
+            {% endif %}
+        </table>
+
+        <form action="/customize" method="GET">
+            <input type="submit" value="Change Settings" class="btn settings_btn" />
+        </form>
+
+    </div>
+</div>
+{% endblock %}

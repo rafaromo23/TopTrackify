@@ -31,7 +31,6 @@ sp = spotipy.Spotify(
 # Home Page
 @app.route("/", methods=["GET"])
 def index():
-    print("redirect URL: ", SPOTIPY_REDIRECT_URI)
     return render_template('index.html')
 
 
@@ -69,8 +68,21 @@ def customize():
     return render_template('customize.html')
 
 
+# Top Artists page
+@app.route("/topData", methods=["GET"])
+def topData():
 
+    type = request.args.get('type')
+    time_period = request.args.get('time_period')
+    length = request.args.get('length')
 
+    if type == 'artists':
+        top_data = sp.current_user_top_artists(limit=length, offset=0, time_range=time_period)
+    else:
+        top_data = sp.current_user_top_tracks(limit=length, offset=0, time_range=time_period)
+
+    top_items = top_data["items"]
+    return render_template('topData.html', type=type, time_period=time_period, top_data=top_data, top_items=top_items)
 
 
 

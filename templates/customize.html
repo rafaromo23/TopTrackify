@@ -7,33 +7,42 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="header title">Top Trackify</h1>
-    <p class="description">View your top artists and tracks!</p>
     <div class="content">
-        <form action="/" method="POST">
+        <h1 class="header title">Top Trackify</h1>
+        <p class="description">View your top artists and tracks!</p>
+    
 
-            <label for="type">Type</label>
-            <select name="type" class="type">
-                <option value="artists">Artists</option>
-                <option value="tracks">Tracks</option>
-            </select>
+        <form action="/topData" method="GET">
 
-            <label for="time_period">Time Period</label>
-            <select name="time_period" class="time_period">
-                <option value="1_year">Last Year</option>
-                <option value="6_months">Last 6 Months</option>
-                <option value="1_month">Last Month</option>
-            </select>
+            <table class="table custom_table">
+                <tr>
+                    <td><label for="type">Type</label></td>
+                    <td><select name="type" class="select type">
+                        <option value="artists">Artists</option>
+                        <option value="tracks">Tracks</option>
+                    </select></td>
+                </tr>
 
-            <label for="length">Length</label>
-            <select name="length" class="length">
-                <option value="Top_10">Top 10</option>
-                <option value="Top_25">Top 25</option>
-                <option value="Top_50">Top 50</option>
-            </select>
+                <tr>
+                    <td><label for="time_period">Time Period</label></td>
+                    <td><select name="time_period" class="select time_period">
+                        <option value="short_term">Last Month</option>
+                        <option value="medium_term">Last 6 Months</option>
+                        <option value="long_term">Last Year</option>
+                    </select></td>
+                </tr>
 
+                <tr>
+                    <td><label for="length">Length</label></td>
+                    <td><select name="length" class="select length">
+                        <option value="10">Top 10</option>
+                        <option value="25">Top 25</option>
+                        <option value="50">Top 50</option>
+                    </select></td>
+                </tr>
 
-            <input type="submit" value="Get" class="get_btn" />
+            </table>
+            <button type="submit" class="btn get_btn">Generate</button>
         </form>
     </div>
 </div>
