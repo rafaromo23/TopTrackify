@@ -1,1 +1,8 @@
+# virtual environment
 venv/
+
+# Spotipy cache file
+.cache
+
+# environment variables
+.env

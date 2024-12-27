@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Top Trackify</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <h1 class="header title">Top Trackify</h1>
+    <p class="description">View your top artists and tracks!</p>
+    <div class="content">
+        <form action="/" method="POST">
+
+            <label for="type">Type</label>
+            <select name="type" class="type">
+                <option value="artists">Artists</option>
+                <option value="tracks">Tracks</option>
+            </select>
+
+            <label for="time_period">Time Period</label>
+            <select name="time_period" class="time_period">
+                <option value="1_year">Last Year</option>
+                <option value="6_months">Last 6 Months</option>
+                <option value="1_month">Last Month</option>
+            </select>
+
+            <label for="length">Length</label>
+            <select name="length" class="length">
+                <option value="Top_10">Top 10</option>
+                <option value="Top_25">Top 25</option>
+                <option value="Top_50">Top 50</option>
+            </select>
+
+
+            <input type="submit" value="Get" class="get_btn" />
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
