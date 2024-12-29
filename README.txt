@@ -8,6 +8,23 @@ I originally was going to use Spotipy, which is a library for handling with Spot
 
 The rumors appear to be true; my top artists and tracks for the past year were different than the ones Spotify displayed in my 2024 Spotify Wrapped.
 
+According to Spotify:
+Top artists                 Top Tracks
+1. Kanye West               1. BURN
+2. Drake                    2. DO IT
+3. Travis Scott             3. KING
+4. Beabadoobee              4. BACK TO ME
+5. Tyler, The Creator       5. Los Pollos Hermanos
+
+
+According to Top Trackify:
+Top artists                     Top Tracks
+1. Kanye West                   1. Good Life
+2. Jay-Z                        2. Heard 'Em Say
+3. Drake                        3. I Wonder
+4. J. Cole                      4. Black Skinhead
+5. Younboy Never Broke Again    5. All Falls Down
+
 
 Sources:
 Spotify Web API Documentation: https://developer.spotify.com/documentation/web-api
