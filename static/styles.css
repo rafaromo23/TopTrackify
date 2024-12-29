@@ -55,6 +55,10 @@ body, html {
     margin-bottom: 30px;
 }
 
+.logout_btn {
+    margin: 10px 0;
+}
+
 
 /* tables */
 .table {
