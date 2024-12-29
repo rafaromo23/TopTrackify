@@ -6,3 +6,6 @@ venv/
 
 # environment variables
 .env
+
+# flask session
+.flask_session

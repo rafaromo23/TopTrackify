@@ -5,6 +5,7 @@ from flask_session import Session
 import urllib.parse
 import base64
 import requests
+from datetime import datetime
 
 load_dotenv()
 
@@ -94,7 +95,7 @@ def callback():
     # storing token info in session
     session['access_token'] = access_token
     session['refresh_token'] = refresh_token
-    session['expires_in'] = expires_in
+    session['expires_at'] = datetime.now().timestamp() + expires_in
 
 
     # redirecting to customization page
@@ -107,6 +108,31 @@ def callback():
 def customize():
     return render_template('customize.html')
 
+@app.route("/refresh", methods=["GET"])
+def refresh():
+    refresh_token = session['refresh_token']
+
+    # checking if refresh_token present
+    if not refresh_token:
+        return redirect(url_for('login'))
+    
+    if datetime.now().timestamp() > session['expires_at']:
+        query_body = {
+            'grant_type': 'refresh_token',
+            'refresh_token': refresh_token,
+            'client_id': CLIENT_ID,
+            'client_secret': CLIENT_SECRET
+        }
+
+    token_info = requests.post(TOKEN_URL, data=query_body)
+    token_info = token_info.json()
+
+    expires_in = token_info['expires_in']
+    session['access_token'] = token_info['access_token']
+    session['expires_at'] = datetime.now().timestamp() + expires_in
+
+    return redirect(url_for("customize"))
+
 
 # Top Artists page
 @app.route("/topData", methods=["GET"])
@@ -115,13 +141,12 @@ def topData():
     # Getting access token
     access_token = session['access_token']
 
-    # debugging
-    print(f"Session State: {session}")
-    print(f"Access Token Retrieved: {access_token}")
-
+    # checking if access_token present
     if not access_token:
-        print("Access Token is missing. Redirecting to login.")
         return redirect(url_for('login'))
+    # checking if access_token needs refresh
+    if datetime.now().timestamp() > session['expires_at']:
+        return redirect(url_for("refresh"))
 
     # putting the header together
     headers = {
